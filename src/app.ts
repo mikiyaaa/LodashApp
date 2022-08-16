@@ -17,7 +17,7 @@ const products = [
     }
 ];
 
-const newProd = new Product('', -500);
+const newProd = new Product('商品3', -1900);
 validate(newProd).then(errors => {
     if (errors.length > 0) {
         console.log('バリデーションエラー');

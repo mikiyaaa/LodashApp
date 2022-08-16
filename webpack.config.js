@@ -1,27 +1,29 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-    mode: "development",
-    entry: "./src/app.ts",
+	mode: 'development',
+    watch: true,
+    watchOptions: {
+        ignored: /node_modules/
+    },
+    entry: './src/app.ts',
+    // 出力先の設定
     output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, "dist"),
-        publicPath: "./dist",
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: './dist',
+        clean: {
+            keep: /index.html/, // index.html をキープ（削除しない）
+        },
     },
-    devServer: {
-        static: [
-            {
-                directory: path.resolve(__dirname, "dist"),
-                publicPath: "dist",
-            },
-            {
-                directory: __dirname,
-                publicPath: "/",
-            }
-        ],
+	devtool: 'source-map',
+	// dev Serverの設定
+	devServer: {
+        static: {
+            directory: path.resolve(__dirname, 'dist'),
+        }
     },
-    devtool: 'source-map',
-    module: {
+	module: {
         rules: [
             {
                 test: /\.ts$/,
@@ -30,7 +32,7 @@ module.exports = {
             },
         ],
     },
-    resolve: {
+	resolve: {
         extensions: [".ts", ".js"],
     },
 }
